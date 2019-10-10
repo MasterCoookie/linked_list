@@ -341,6 +341,7 @@ def main():
     llist.append(9)
     llist.append(10)
     llist.append(10)
+    llist.append(11)
 
     llist.remove_duplicates()
     llist.print_list()
