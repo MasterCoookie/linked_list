@@ -306,14 +306,63 @@ class LinkedList:
 
         return cur_node
 
+    def sum_two_lists(self, llist):
+        '''Sums up two llist of digits as if they were a number.
+        The numbers need to be appended from the highest ex. houndreds all the
+        way to the number of units.
+        So to sum up 315 + 29:
+        llist_1.append(5)
+        llist_1.append(1)
+        llist_1.append(3)
 
+        llist_2.append(9)
+        llist_2.append(2)
+        And then:
+        llist_1.sum_of_two_lists(llist_2).
+
+        Returns a linked list instance'''
+        pointer_1 = self.head
+        pointer_2 = llist.head
+
+        sum_list = LinkedList()
+
+        #adding numbers primary school way
+        carry = 0
+        while pointer_1 or pointer_2:
+            if not pointer_1:
+                digit_1 = 0
+            else:
+                digit_1 = pointer_1.data
+        
+            if not pointer_2:
+                digit_2 = 0
+            else:
+                digit_2 = pointer_2.data
+
+            sum_of_digits = digit_1 + digit_2 + carry
+
+            if sum_of_digits >= 10:
+                sum_of_digits %= 10
+                carry = 1
+            else:
+                carry = 0
+
+            sum_list.append(sum_of_digits)
+
+            if pointer_1:
+                pointer_1 = pointer_1.next
             
+            if pointer_2:
+                pointer_2 = pointer_2.next
+
+        return sum_list
+     
 
 
 def main():
     '''main'''
     llist = LinkedList()
-    # llist_2 = LinkedList()
+    llist_2 = LinkedList()
     # llist.append("A")
     # llist.append("B")
     # llist.append("C")
@@ -333,19 +382,14 @@ def main():
     #llist.swap('C', 'A')
     # llist.print_list()
     # llist.rotate(2)
-    llist.append(1)
-    llist.append(1)
     llist.append(5)
-    llist.append(7)
-    llist.append(7)
-    llist.append(9)
-    llist.append(10)
-    llist.append(10)
-    llist.append(11)
-    llist.append(12)
-
-    llist.remove_duplicates()
-    llist.print_list()
+    llist.append(6)
+    llist.append(3)
+    llist_2.append(8)
+    llist_2.append(4)
+    
+    print(365 + 48)
+    llist.sum_two_lists(llist_2).print_list()
 
 if __name__ == '__main__':
     main()
